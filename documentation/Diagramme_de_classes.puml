@@ -35,6 +35,7 @@ class Adherent {
 }
 
 class Emprunt {
+-id : int
 -dateEmprunt : DateTime
 -dateRetourEstimee : DateTime
 -dateRetour : ?DateTime
