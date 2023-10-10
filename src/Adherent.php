@@ -6,6 +6,7 @@ use DateTime;
 
 class Adherent
 {
+    private int $id;
     private string $numeroAdherent;
     private string $prenom;
     private string $nom;

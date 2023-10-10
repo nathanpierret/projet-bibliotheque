@@ -27,6 +27,7 @@ class Magazine {
 }
 
 class Adherent {
+-id : int
 -numeroAdherent : string
 -prenom : string
 -nom : string
