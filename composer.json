@@ -1,0 +1,19 @@
+{
+    "name": "pierretn/projet-bibliotheque",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nathan Pierret",
+            "email": "pierretnathan49@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.3",
+        "phpunit/phpunit": "^10.4"
+    }
+}
