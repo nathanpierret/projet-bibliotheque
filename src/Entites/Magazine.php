@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Entites;
 
-use App\Media;
 use DateTime;
 
 class Magazine extends Media
