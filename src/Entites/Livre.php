@@ -12,4 +12,20 @@ class Livre extends Media
     {
 
     }
+
+    public function setIsbn(int $isbn): void
+    {
+        $this->isbn = $isbn;
+    }
+
+    public function setAuteur(string $auteur): void
+    {
+        $this->auteur = $auteur;
+    }
+
+    public function setNbPages(int $nbPages): void
+    {
+        $this->nbPages = $nbPages;
+    }
+
 }

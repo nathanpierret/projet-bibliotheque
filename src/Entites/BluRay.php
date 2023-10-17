@@ -11,4 +11,20 @@ class BluRay extends Media
     public function __construct()
     {
     }
+
+    public function setRealisateur(string $realisateur): void
+    {
+        $this->realisateur = $realisateur;
+    }
+
+    public function setDuree(int $duree): void
+    {
+        $this->duree = $duree;
+    }
+
+    public function setAnneeSortie(string $anneeSortie): void
+    {
+        $this->anneeSortie = $anneeSortie;
+    }
+
 }

@@ -16,4 +16,25 @@ class Media
     {
 
     }
+
+    public function setTitre(string $titre): void
+    {
+        $this->titre = $titre;
+    }
+
+    public function setDureeEmprunt(string $dureeEmprunt): void
+    {
+        $this->dureeEmprunt = $dureeEmprunt;
+    }
+
+    public function setStatut(string $statut): void
+    {
+        $this->statut = $statut;
+    }
+
+    public function setDateCreation(DateTime $dateCreation): void
+    {
+        $this->dateCreation = $dateCreation;
+    }
+
 }
