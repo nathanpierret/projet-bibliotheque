@@ -25,7 +25,7 @@ class Adherent
     private string $nom;
     #[Column(length: 70)]
     private string $email;
-    #[Column(name: "date_adhesion", type: Types::DATETIME_IMMUTABLE)]
+    #[Column(name: "date_adhesion", type: Types::DATETIME_MUTABLE)]
     private DateTime $dateAdhesion;
 
     public function __construct()
