@@ -1,0 +1,4 @@
+installer Java -> JDK 21
+mettre "ProgramFiles\Java\jdk-21\bin" dans le PATH
+installer SchemaSpy
+créer le site Internet pour documenter la BDD
