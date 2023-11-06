@@ -1,0 +1,21 @@
+#Command: java -jar ./schemaspy-6.0.0.jar -configFile C:\Users\pierr\OneDrive\Documents\schemaspy_config.file
+
+# type of database. Run with -dbhelp for details
+schemaspy.t=mysql
+# optional path to alternative jdbc drivers.
+#schemaspy.dp=path/to/drivers
+#schemaspy.dp=C:\Program Files\Microsoft SQL Server 2000 Driver for JDBC\lib\mssql-jdbc-7.4.1.jre8.jar # esse jar é baixado do site da microsoft
+# database properties: host, port number, name user, password
+schemaspy.host=localhost
+schemaspy.port=3306
+schemaspy.db=db_bibliotheque
+schemaspy.u=root
+schemaspy.p=
+# output dir to save generated files
+schemaspy.o=C:\Users\pierr\OneDrive\Documents\php-bibliotheque
+# db scheme for which generate diagrams
+#schemaspy.s=dbo
+# exemplo dbo
+
+# Uncoment to generate diagrams for all schemas in database
+# schemaspy.all
