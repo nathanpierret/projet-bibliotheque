@@ -32,9 +32,9 @@ class Adherent
     {
     }
 
-    public function setNumeroAdherent(): void
+    public function setNumeroAdherent(string $numero): void
     {
-        $this->numeroAdherent = "AD-".sprintf("%'.06d",rand(0,999999));
+        $this->numeroAdherent = $numero;
     }
 
     public function setPrenom(string $prenom): void

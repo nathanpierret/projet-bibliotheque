@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\unitaires;
+namespace App\Tests\Unit;
 
 use App\Entites\Adherent;
 use App\Entites\BluRay;
