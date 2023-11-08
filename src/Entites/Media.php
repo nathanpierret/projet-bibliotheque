@@ -8,7 +8,7 @@ class Media
 {
     protected int $id;
     protected string $titre;
-    protected string $dureeEmprunt;
+    protected int $dureeEmprunt;
     protected string $statut;
     protected DateTime $dateCreation;
 

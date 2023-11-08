@@ -1,6 +1,6 @@
 <?php
 
-require_once join(DIRECTORY_SEPARATOR, [__DIR__, 'bootstrap.php']);
+require_once './bootstrap.php';
 require "./vendor/autoload.php";
 
 use App\Entites\Adherent;

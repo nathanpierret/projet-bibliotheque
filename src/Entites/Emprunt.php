@@ -8,13 +8,14 @@ class Emprunt
 {
     private int $id;
     private DateTime $dateEmprunt;
-    private DateTime $dateRetourEstimee;
+    private ?DateTime $dateRetourEstimee;
     private ?DateTime $dateRetour;
     private Adherent $adherent;
     private Media $media;
 
     public function __construct()
     {
+        $this->dateRetourEstimee = null;
     }
 
     public function setDateEmprunt(DateTime $dateEmprunt): void
@@ -53,12 +54,8 @@ class Emprunt
 
     public function checkEmpruntLate(): bool
     {
-        if ($this->checkEmpruntActif()) {
-            if ((new DateTime()) > $this->dateRetourEstimee) {
-                return true;
-            } else {
-                return false;
-            }
+        if ($this->checkEmpruntActif() and (new DateTime()) > $this->dateRetourEstimee) {
+            return true;
         } else {
             return false;
         }

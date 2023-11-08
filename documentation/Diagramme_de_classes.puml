@@ -40,11 +40,13 @@ class Emprunt {
 -dateEmprunt : DateTime
 -dateRetourEstimee : DateTime
 -dateRetour : ?DateTime
++checkEmpruntActif()
++checkEmpruntLate()
 }
 
 Media <|-- Livre
 Media <|-- Magazine
 Media <|-- BluRay
-Adherent "1..1  " --> "0..* " Emprunt : " effectue"
-Emprunt "0..1  " <-- "1..1  " Media : " est choisi dans"
+Adherent "1..1  " <-- "0..* " Emprunt : " effectue"
+Emprunt "0..*  " --> "1..1  " Media : " est choisi dans"
 @enduml
