@@ -25,7 +25,7 @@
         "doctrine/dbal": "3.7.1",
         "symfony/yaml": "v6.3.3",
         "symfony/cache": "v6.3.5",
-        "symfony/validator": "^6.3"
+        "symfony/validator": "v6.3.7"
     },
     "require-dev": {
         "symfony/var-dumper": "^6.3",

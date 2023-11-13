@@ -54,7 +54,7 @@ class Emprunt
 
     public function checkEmpruntLate(): bool
     {
-        if ($this->checkEmpruntActif() and (new DateTime()) > $this->dateRetourEstimee) {
+        if ($this->checkEmpruntActif() && (new DateTime()) > $this->dateRetourEstimee) {
             return true;
         } else {
             return false;
