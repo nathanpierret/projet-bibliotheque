@@ -28,13 +28,23 @@ class CreerAdherent
     public function execute(CreerAdherentRequete $requete) :  bool {
 
         // Valider les données en entrées (de la requête)
-
+        $erreurs = $this->validateur->validate($requete);
+        if (count($erreurs) > 0) {
+            throw new \Exception($erreurs->__toString());
+        }
         // Vérifier que l'email n'existe pas déjà
-
+        $repository = $this->entityManager->getRepository(Adherent::class);
+        $adherentEmails = $repository->count(['email' => $requete->email]);
+        if ($adherentEmails > 0) {
+            throw new \Exception("Cette adresse mail est déjà utilisée !");
+        }
         // Générer un numéro d'adhérent au format AD-999999
         $numeroAdherent = $this->generateurNumeroAdherent->generer();
         // Vérifier que le numéro n'existe pas déjà
-
+        $numeros = $repository->count(['numeroAdherent' => $numeroAdherent]);
+        if ($numeros > 0) {
+            throw new \Exception("Ce numéro d'adhérent est déjà utilisé ! Ce n'est pas votre jour de chance ! :(");
+        }
         // Créer l'adhérent
         $adherent = new Adherent();
         $adherent->setNumeroAdherent($numeroAdherent);
@@ -44,6 +54,9 @@ class CreerAdherent
         $adherent->setDateAdhesion(new \DateTime());
         // Enregistrer l'adhérent en base de données
         $this->entityManager->persist($adherent);
+        if (!$this->entityManager->contains($adherent)) {
+            throw new \Exception("Un problème est survenu lors de l'enregistrement dans la base de données !");
+        }
         $this->entityManager->flush();
         return true;
     }
