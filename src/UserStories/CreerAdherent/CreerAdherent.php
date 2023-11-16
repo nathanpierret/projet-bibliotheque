@@ -30,7 +30,11 @@ class CreerAdherent
         // Valider les données en entrées (de la requête)
         $erreurs = $this->validateur->validate($requete);
         if (count($erreurs) > 0) {
-            throw new \Exception($erreurs->__toString());
+            $message = "";
+            foreach ($erreurs as $violation) {
+                $message .= $violation->getMessage().PHP_EOL;
+            }
+            throw new \Exception($message);
         }
         // Vérifier que l'email n'existe pas déjà
         $repository = $this->entityManager->getRepository(Adherent::class);
