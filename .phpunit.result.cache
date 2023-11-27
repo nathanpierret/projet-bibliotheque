@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"App\\Tests\\Unit\\GenerateurNumeroAdherentTest::GenerateurNumeroAdherentTest_FormatCorrect_True":0.005}}
+{"version":1,"defects":{"App\\Tests\\Integration\\UserStories\\CreerMagazineTest::creerMagazine_ValeursCorrectes_True":8},"times":{"App\\Tests\\Unit\\GenerateurNumeroAdherentTest::GenerateurNumeroAdherentTest_FormatCorrect_True":0.005}}

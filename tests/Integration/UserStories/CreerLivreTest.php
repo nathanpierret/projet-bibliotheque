@@ -129,7 +129,7 @@ class CreerLivreTest extends TestCase
     }
 
     #[test]
-    public function creerLivre_DateCreationNonRenseigne_Exception() {
+    public function creerLivre_DateCreationNonRenseignee_Exception() {
         // Arrange
         $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3","Le petit GREGORY","",164);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);

@@ -3,11 +3,15 @@
 namespace App\Entites;
 
 use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
 class Magazine extends Media
 {
+    #[ORM\Column(type: "string")]
     private int $numero;
-    private DateTime $datePublication;
+    #[ORM\Column(type: "string")]
+    private string $datePublication;
 
     public function __construct()
     {
@@ -18,9 +22,19 @@ class Magazine extends Media
         $this->numero = $numero;
     }
 
-    public function setDatePublication(DateTime $datePublication): void
+    public function setDatePublication(string $datePublication): void
     {
         $this->datePublication = $datePublication;
+    }
+
+    public function getNumero(): int
+    {
+        return $this->numero;
+    }
+
+    public function getDatePublication(): string
+    {
+        return $this->datePublication;
     }
 
 }
