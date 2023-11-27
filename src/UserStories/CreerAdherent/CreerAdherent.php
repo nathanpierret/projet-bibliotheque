@@ -27,7 +27,7 @@ class CreerAdherent
 
     public function execute(CreerAdherentRequete $requete) :  bool {
 
-        // Valider les données en entrées (de la requête)
+        // Valider les données en entrée (de la requête)
         $erreurs = $this->validateur->validate($requete);
         if (count($erreurs) > 0) {
             $message = "";

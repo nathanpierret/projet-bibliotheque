@@ -35,6 +35,11 @@
     "scripts": {
         "unit-test": "./vendor/bin/phpunit --testsuite Unit --testdox --colors=always",
         "it-test": "./vendor/bin/phpunit --testsuite Integration --testdox --colors=always",
-        "all-tests": "./vendor/bin/phpunit --testdox --colors=always"
+        "all-tests": "./vendor/bin/phpunit --testdox --colors=always",
+        "delDB": "./vendor/bin/doctrine orm:schema-tool:drop --force",
+        "updateDB": "./vendor/bin/doctrine orm:schema-tool:update --force",
+        "createDB": "./vendor/bin/doctrine orm:schema-tool:create",
+        "spy": "java -jar C:/Users/pierretn/Documents/SchemaSpy/schemaspy-6.2.4.jar -configFile C:/Users/pierretn/Documents/SchemaSpy/schemaspy_config.file -dp C:/Users/pierretn/Documents/SchemaSpy/mysql-connector-j-8.2.0.jar",
+        "spy2": "java -jar C:/Users/pierretn/Documents/SchemaSpy/schemaspy-6.2.4.jar -t mysql -dp C:/Users/pierretn/Documents/SchemaSpy/mysql-connector-j-8.2.0.jar -db db_bibliotheque -host localhost -port 3306 -o ./documentation/schemaSpy -u root -s db_bibliotheque"
     }
 }
