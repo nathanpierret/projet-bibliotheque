@@ -9,27 +9,27 @@ class CreerMagazineRequete
     #[Assert\NotBlank(
         message: "Le titre doit être renseigné !"
     )]
-    public string $titre;
+    public ?string $titre;
     #[Assert\NotBlank(
         message: "La date de parution doit être renseignée !"
     )]
-    public string $dateCreation;
+    public ?string $dateCreation;
     #[Assert\NotBlank(
         message: "Le numéro de magazine doit être renseigné !"
     )]
-    public string $numero;
+    public ?string $numero;
     #[Assert\NotBlank(
         message: "La date de publication doit être renseignée !"
     )]
-    public string $datePublication;
+    public ?string $datePublication;
 
     /**
-     * @param string $titre
-     * @param string $dateCreation
-     * @param string $numero
-     * @param string $datePublication
+     * @param ?string $titre
+     * @param ?string $dateCreation
+     * @param ?string $numero
+     * @param ?string $datePublication
      */
-    public function __construct(string $titre, string $dateCreation, string $numero, string $datePublication)
+    public function __construct(?string $titre, ?string $dateCreation, ?string $numero, ?string $datePublication)
     {
         $this->titre = $titre;
         $this->dateCreation = $dateCreation;

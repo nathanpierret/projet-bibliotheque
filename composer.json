@@ -26,7 +26,7 @@
         "symfony/yaml": "v6.3.3",
         "symfony/cache": "v6.3.5",
         "symfony/validator": "v6.3.7",
-        "mnapoli/silly": "^1.8"
+        "mnapoli/silly": "v1.8.3"
     },
     "require-dev": {
         "symfony/var-dumper": "^6.3",

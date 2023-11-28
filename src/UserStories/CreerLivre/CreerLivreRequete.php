@@ -9,19 +9,19 @@ class CreerLivreRequete
     #[Assert\NotBlank(
         message: "Le titre doit être renseigné !"
     )]
-    public string $titre;
+    public ?string $titre;
     #[Assert\NotBlank(
         message: "L'ISBN doit être renseigné !"
     )]
-    public string $isbn;
+    public ?string $isbn;
     #[Assert\NotBlank(
         message: "Le nom de l'auteur doit être renseigné !"
     )]
-    public string $auteur;
+    public ?string $auteur;
     #[Assert\NotBlank(
         message: "La date de parution doit être renseignée !"
     )]
-    public string $dateCreation;
+    public ?string $dateCreation;
     #[Assert\NotBlank(
         message: "Le nombre de pages doit être renseigné !"
     )]
@@ -31,14 +31,14 @@ class CreerLivreRequete
     public ?int $nbPages;
 
     /**
-     * @param string $titre
-     * @param string $isbn
-     * @param string $auteur
-     * @param string $dateCreation
+     * @param ?string $titre
+     * @param ?string $isbn
+     * @param ?string $auteur
+     * @param ?string $dateCreation
      * @param ?int $nbPages
     */
 
-    public function __construct(string $titre, string $isbn, string $auteur, string $dateCreation, int $nbPages=null)
+    public function __construct(?string $titre, ?string $isbn, ?string $auteur, ?string $dateCreation, ?int $nbPages=null)
     {
         $this->titre = $titre;
         $this->isbn = $isbn;
