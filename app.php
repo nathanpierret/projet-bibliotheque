@@ -17,9 +17,8 @@ $app->command('biblio:add:Livre', function (SymfonyStyle $io) use ($entityManage
     $titre = $io->ask("Titre du livre (obligatoire) ");
     $isbn = $io->ask("ISBN (obligatoire) ");
     $auteur = $io->ask("Nom de l'auteur (obligatoire) ");
-    $dateCreation = $io->ask("Date de parution (obligatoire) ");
     $nbPages = $io->ask("Nombre de pages (obligatoire) ");
-    $requete = new \App\UserStories\CreerLivre\CreerLivreRequete($titre,$isbn,$auteur,$dateCreation,$nbPages);
+    $requete = new \App\UserStories\CreerLivre\CreerLivreRequete($titre,$isbn,$auteur,$nbPages);
     $creerLivre = new \App\UserStories\CreerLivre\CreerLivre($entityManager,(new ValidatorBuilder())->enableAnnotationMapping()->getValidator());
     try {
         $creerLivre->execute($requete);
@@ -34,8 +33,7 @@ $app->command('biblio:add:Magazine', function (SymfonyStyle $io) use ($entityMan
     $titre = $io->ask("Titre du magazine (obligatoire) ");
     $numero = $io->ask("Numéro du magazine (obligatoire) ");
     $datePublication = $io->ask("Date de publication (obligatoire) ");
-    $dateCreation = $io->ask("Date de création (obligatoire) ");
-    $requete = new \App\UserStories\CreerMagazine\CreerMagazineRequete($titre,$dateCreation,$numero,$datePublication);
+    $requete = new \App\UserStories\CreerMagazine\CreerMagazineRequete($titre,$numero,$datePublication);
     $creerMagazine = new \App\UserStories\CreerMagazine\CreerMagazine($entityManager,(new ValidatorBuilder())->enableAnnotationMapping()->getValidator());
     try {
         $creerMagazine->execute($requete);
@@ -44,7 +42,5 @@ $app->command('biblio:add:Magazine', function (SymfonyStyle $io) use ($entityMan
         $io->error($e->getMessage());
     }
 });
-
-
 
 $app->run();

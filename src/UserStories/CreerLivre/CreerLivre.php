@@ -4,6 +4,7 @@ namespace App\UserStories\CreerLivre;
 
 use App\Entites\Livre;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CreerLivre
@@ -43,7 +44,7 @@ class CreerLivre
         $livre->setTitre($requete->titre);
         $livre->setAuteur($requete->auteur);
         $livre->setNbPages($requete->nbPages);
-        $livre->setDateCreation($requete->dateCreation);
+        $livre->setDateCreation((new \DateTime())->format("d/m/Y H:i:s"));
         $livre->setStatut('Nouveau');
         $livre->setDureeEmprunt(21);
         // Enregistrer le livre en base de données

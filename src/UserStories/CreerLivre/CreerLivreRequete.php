@@ -19,10 +19,6 @@ class CreerLivreRequete
     )]
     public ?string $auteur;
     #[Assert\NotBlank(
-        message: "La date de parution doit être renseignée !"
-    )]
-    public ?string $dateCreation;
-    #[Assert\NotBlank(
         message: "Le nombre de pages doit être renseigné !"
     )]
     #[Assert\GreaterThan(
@@ -34,17 +30,15 @@ class CreerLivreRequete
      * @param ?string $titre
      * @param ?string $isbn
      * @param ?string $auteur
-     * @param ?string $dateCreation
      * @param ?int $nbPages
     */
 
-    public function __construct(?string $titre, ?string $isbn, ?string $auteur, ?string $dateCreation, ?int $nbPages=null)
+    public function __construct(?string $titre, ?string $isbn, ?string $auteur, ?int $nbPages=null)
     {
         $this->titre = $titre;
         $this->isbn = $isbn;
         $this->auteur = $auteur;
         $this->nbPages = $nbPages;
-        $this->dateCreation = $dateCreation;
     }
 
 

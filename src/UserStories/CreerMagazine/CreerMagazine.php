@@ -35,7 +35,7 @@ class CreerMagazine
         $magazine = new Magazine();
         $magazine->setTitre($requete->titre);
         $magazine->setNumero($requete->numero);
-        $magazine->setDateCreation($requete->dateCreation);
+        $magazine->setDateCreation((new \DateTime())->format("d/m/Y H:i:s"));
         $magazine->setDatePublication($requete->datePublication);
         $magazine->setStatut('Nouveau');
         $magazine->setDureeEmprunt(10);
