@@ -10,6 +10,9 @@ require_once ".\bootstrap.php";
 $generateur = new GenerateurNumeroAdherent();
 $validateur = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
 $erreur = null;
+$prenom = null;
+$nom = null;
+$email = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prenom = ucfirst(strtolower($_POST["prenom-adherent"]));
@@ -20,7 +23,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $creerAdherent->execute($requete);
     } catch (Exception $e) {
-        $erreur = $e;
+        if (str_contains($e->getMessage(),"Le prénom est obligatoire !")) {
+            $prenomErreur = "Le prénom est obligatoire !";
+        }
+        if (str_contains($e->getMessage(),"Le nom est obligatoire !")) {
+            $nomErreur = "Le nom est obligatoire !";
+        }
+        if (str_contains($e->getMessage(),"L'email est obligatoire !")) {
+            $emailErreur1 = "L'email est obligatoire !";
+        }
+        if (str_contains($e->getMessage(),"L'email \"".$_POST["email-adherent"]."\" est incorrect !")) {
+            $emailErreur2 = "L'email \"".$_POST["email-adherent"]."\" est incorrect !";
+        }
     }
 }
 ?>
@@ -40,19 +54,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <form method="post">
     <label for="prenom-adherent">Prénom</label>
-    <input type="text" name="prenom-adherent" id="prenom-adherent">
+    <input type="text" name="prenom-adherent" id="prenom-adherent" value="<?= $prenom?>">
+
+    <?php if (isset($prenomErreur)) {?>
+        <div class="erreur"><?= $prenomErreur?></div>
+    <?php } ?>
 
     <label for="nom-adherent">Nom</label>
-    <input type="text" name="nom-adherent" id="nom-adherent">
+    <input type="text" name="nom-adherent" id="nom-adherent" value="<?= $nom?>">
+
+    <?php if (isset($nomErreur)) {?>
+        <div class="erreur"><?= $nomErreur?></div>
+    <?php } ?>
 
     <label for="email-adherent">Email</label>
-    <input type="text" name="email-adherent" id="email-adherent">
+    <input type="text" name="email-adherent" id="email-adherent" value="<?= $email?>">
+
+    <?php if (isset($emailErreur1)) {?>
+        <div class="erreur"><?= $emailErreur1?></div>
+    <?php } ?>
+
+    <?php if (isset($emailErreur2)) {?>
+        <div class="erreur"><?= $emailErreur2?></div>
+    <?php } ?>
 
     <input type="submit" name="creer-adherent" value="Ajouter">
-
-    <?php if (isset($erreur)) { ?>
-        <div class="erreur"><?= $erreur->getMessage()?></div>
-    <?php } ?>
 </form>
 </body>
 </html>

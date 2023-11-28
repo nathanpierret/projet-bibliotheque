@@ -5,6 +5,8 @@ namespace App\UserStories\CreerMagazine;
 use App\Entites\Magazine;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use App\Entites\DureeEmprunt;
+use App\Entites\StatutEmprunt;
 
 class CreerMagazine
 {
@@ -37,8 +39,8 @@ class CreerMagazine
         $magazine->setNumero($requete->numero);
         $magazine->setDateCreation((new \DateTime())->format("d/m/Y H:i:s"));
         $magazine->setDatePublication($requete->datePublication);
-        $magazine->setStatut('Nouveau');
-        $magazine->setDureeEmprunt(10);
+        $magazine->setStatut(StatutEmprunt::STATUT_NOUVEAU);
+        $magazine->setDureeEmprunt(DureeEmprunt::DUREE_EMPRUNT_MAGAZINE);
         // Enregistrer le magazine en base de données
         $this->entityManager->persist($magazine);
         if (!$this->entityManager->contains($magazine)) {

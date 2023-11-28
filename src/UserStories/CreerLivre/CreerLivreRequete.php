@@ -13,6 +13,9 @@ class CreerLivreRequete
     #[Assert\NotBlank(
         message: "L'ISBN doit être renseigné !"
     )]
+    #[Assert\Isbn(
+        bothIsbnMessage: "L'ISBN n'est ni de type ISBN-10, ni de type ISBN-13 !"
+    )]
     public ?string $isbn;
     #[Assert\NotBlank(
         message: "Le nom de l'auteur doit être renseigné !"

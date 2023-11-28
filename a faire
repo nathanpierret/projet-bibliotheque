@@ -1,4 +1,5 @@
-Définition d'une User Story dans le MD
-Redéfinir les critères d'acceptations dans le MD
-CreerLivre : critère ISBN valide
-Front : erreurs en-dessous de chaque zone de texte + remettre la value en cas d'erreur
+Définition d'une User Story dans le MD - OK
+Redéfinir les critères d'acceptations dans le MD - OK
+CreerLivre : critère ISBN valide - OK
+Front : erreurs en-dessous de chaque zone de texte + remettre la value en cas d'erreur - OK
+Faire une classe StatutEmprunt pour les statuts et DureeEmprunt pour les durées d'emprunt - OK

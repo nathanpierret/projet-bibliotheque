@@ -49,16 +49,16 @@ class CreerLivreTest extends TestCase
     #[test]
     public function creerLivre_ValeursCorrectes_True() {
         // Arrange
-        $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3","Le petit GREGORY",164);
+        $requete = new CreerLivreRequete("La noyade","978-2-1234-5680-3","Le petit GREGORY",164);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
         // Act
         $resultat = $creerLivre->execute($requete);
         // Assert
         $repository = $this->entityManager->getRepository(Livre::class);
-        $livre = $repository->findOneBy(["isbn" => "978-3-1249-3451-3"]);
+        $livre = $repository->findOneBy(["isbn" => "978-2-1234-5680-3"]);
         $this->assertNotNull($livre);
         $this->assertEquals("La noyade",$livre->getTitre());
-        $this->assertEquals("978-3-1249-3451-3",$livre->getIsbn());
+        $this->assertEquals("978-2-1234-5680-3",$livre->getIsbn());
         $this->assertEquals("Le petit GREGORY",$livre->getAuteur());
         $this->assertEquals(164,$livre->getNbPages());
         $this->assertEquals(21,$livre->getDureeEmprunt());
@@ -76,11 +76,21 @@ class CreerLivreTest extends TestCase
     }
 
     #[test]
+    public function creerLivre_ISBNNonvalide_Exception() {
+        // Arrange
+        $requete = new CreerLivreRequete("La noyade","6489","Le petit GREGORY",164);
+        $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
+        $this->expectExceptionMessage("L'ISBN n'est ni de type ISBN-10, ni de type ISBN-13 !");
+        // Act
+        $resultat = $creerLivre->execute($requete);
+    }
+
+    #[test]
     public function creerLivre_ISBNNonUnique_Exception() {
         // Arrange
-        $requete1 = new CreerLivreRequete("La noyade","978-3-1249-3451-3","Le petit GREGORY",164);
+        $requete1 = new CreerLivreRequete("La noyade","978-2-1234-5680-3","Le petit GREGORY",164);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
-        $requete2 = new CreerLivreRequete("The Shining","978-3-1249-3451-3","Johnny",143);
+        $requete2 = new CreerLivreRequete("The Shining","978-2-1234-5680-3","Johnny",143);
         $creerLivre->execute($requete1);
         $this->expectExceptionMessage("Cet ISBN est déjà utilisé !");
         // Act
@@ -90,7 +100,7 @@ class CreerLivreTest extends TestCase
     #[test]
     public function creerLivre_TitreNonRenseigne_Exception() {
         // Arrange
-        $requete = new CreerLivreRequete("","978-3-1249-3451-3","Le petit GREGORY",164);
+        $requete = new CreerLivreRequete("","978-2-1234-5680-3","Le petit GREGORY",164);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
         $this->expectExceptionMessage("Le titre doit être renseigné !");
         // Act
@@ -100,7 +110,7 @@ class CreerLivreTest extends TestCase
     #[test]
     public function creerLivre_NomAuteurNonRenseigne_Exception() {
         // Arrange
-        $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3","",164);
+        $requete = new CreerLivreRequete("La noyade","978-2-1234-5680-3","",164);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
         $this->expectExceptionMessage("Le nom de l'auteur doit être renseigné !");
         // Act
@@ -110,7 +120,7 @@ class CreerLivreTest extends TestCase
     #[test]
     public function creerLivre_NombrePagesNonRenseigne_Exception() {
         // Arrange
-        $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3","Le petit GREGORY");
+        $requete = new CreerLivreRequete("La noyade","978-2-1234-5680-3","Le petit GREGORY");
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
         $this->expectExceptionMessage("Le nombre de pages doit être renseigné !");
         // Act
@@ -120,7 +130,7 @@ class CreerLivreTest extends TestCase
     #[test]
     public function creerLivre_NombrePagesEgalAZero_Exception() {
         // Arrange
-        $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3","Le petit GREGORY",-10);
+        $requete = new CreerLivreRequete("La noyade","978-2-1234-5680-3","Le petit GREGORY",-10);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
         $this->expectExceptionMessage("Le nombre de pages doit être supérieur à 0 !");
         // Act

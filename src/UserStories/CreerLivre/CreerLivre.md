@@ -1,5 +1,38 @@
 # UserStory de CreerLivre
 
+**En tant que** bibliothécaire  
+**Je veux** créer un livre  
+**Afin de** le rendre accessible aux adhérents de la bibliothèque  
+
+## Critères d'acceptation
+
+### Validation des données
+
+Ces données doivent être renseignées :
+
+- Le titre du livre.
+- L'ISBN du livre.
+- Le nom de l'auteur.
+- Le nombre de pages du livre.
+- La date de création du livre dans la base de données.
+
+L'ISBN doit aussi être unique et valide.
+
+### Enregistrement dans la base de données
+
+Les informations du livre doivent être correctement enregistrées dans la base de données.
+
+### Messages d'erreurs
+
+Des messages d'erreur explicites doivent être retournés en cas d'informations manquantes ou incorrectes.
+
+### Cas du statut et de la durée de l'emprunt
+
+- Le statut par défaut lors de la création d'un livre devra être **'Nouveau'**.
+- La durée de l'emprunt devra être égale à la durée définie lors de la présentation du projet.
+
+## Classes à implémenter
+
 La UserStory nécessite la création de 2 classes :
 
 - La classe **CreerLivreRequete** pour créer la requête contenant les données à ajouter la table **Livre** de la base de données.
@@ -10,25 +43,10 @@ La UserStory nécessite la création de 2 classes :
 Cette classe construit la requête qui contient les données à ajouter dans la base de données dans la table **Livre**.  
 ## Attributs
 
-### $titre
-- Type : string (chaîne de caractères).  
-- Critère d'acceptation : Le titre doit être renseigné.
-
-### $isbn
-- Type : string (chaîne de caractères).  
-- Critères d'acceptation : L'ISBN doit être renseigné et doit être unique.
-
-### $auteur
-- Type : string (chaîne de caractères).  
-- Critère d'acceptation : Le nom de l'auteur doit être renseigné.
-
-### $dateCreation
-- Type : string (chaîne de caractères).  
-- Critère d'acceptation : La date de création doit être renseignée.
-
-### $nbPages
-- Type : string (chaîne de caractères).  
-- Critères d'acceptation : Le nombre de pages doit être renseigné et doit être supérieur à 0.
+**$titre :** string (chaîne de caractères).  
+**$isbn :** string (chaîne de caractères).  
+**$auteur :** string (chaîne de caractères).  
+**$nbPages :** string (chaîne de caractères).  
 
 ## Classe CreerLivre
 
@@ -58,7 +76,7 @@ sinon renvoie une **Exception**.
 ```php
         // Arrange
         $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3",
-        "Le petit GREGORY","02/11/2023 10:35:15",164);
+        "Le petit GREGORY",164);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
         // Act
         $resultat = $creerLivre->execute($requete);
@@ -68,7 +86,7 @@ sinon renvoie une **Exception**.
 ```php
         // Arrange
         $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3",
-        "","02/11/2023 10:35:15",164);
+        "",164);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
         $this->expectExceptionMessage("Le nom de l'auteur doit être renseigné !");
         // Act

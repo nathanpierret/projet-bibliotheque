@@ -1,5 +1,35 @@
 # UserStory de CreerMagazine
 
+**En tant que** bibliothécaire  
+**Je veux** créer un magazine  
+**Afin de** le rendre accessible aux adhérents de la bibliothèque
+
+## Critères d'acceptation
+
+### Validation des données
+
+Ces données doivent être renseignées :
+
+- Le titre du magazine.
+- Le numéro d'édition du magazine.
+- La date de publication du magazine.
+- La date de création du magazine dans la base de données.
+
+### Enregistrement dans la base de données
+
+Les informations du magazine doivent être correctement enregistrées dans la base de données.
+
+### Messages d'erreurs
+
+Des messages d'erreur explicites doivent être retournés en cas d'informations manquantes ou incorrectes.
+
+### Cas du statut et de la durée de l'emprunt
+
+- Le statut par défaut lors de la création d'un magazine devra être **'Nouveau'**.
+- La durée de l'emprunt devra être égale à la durée définie lors de la présentation du projet.
+
+## Classes à implémenter
+
 La UserStory nécessite la création de 2 classes :
 
 - La classe **CreerMagazineRequete** pour créer la requête contenant les données à ajouter la table **Magazine** de la base de données.
@@ -10,21 +40,9 @@ La UserStory nécessite la création de 2 classes :
 Cette classe construit la requête qui contient les données à ajouter dans la base de données dans la table **Magazine**.
 ## Attributs
 
-### $titre
-- Type : string (chaîne de caractères).
-- Critère d'acceptation : Le titre doit être renseigné.
-
-### $dateCreation
-- Type : string (chaîne de caractères).
-- Critère d'acceptation : La date de création doit être renseignée.
-
-### $numero
-- Type : string (chaîne de caractères).
-- Critère d'acceptation : Le numéro doit être renseigné.
-
-### $datePublication
-- Type : string (chaîne de caractères).
-- Critère d'acceptation : La date de publication doi être renseignée.
+**$titre :** string (chaîne de caractères).  
+**$numero :** string (chaîne de caractères).  
+**$datePublication :** string (chaîne de caractères).
 
 ## Classe CreerMagazine
 
@@ -53,8 +71,7 @@ Si les données sont valides, alors elles sont ajoutées dans la base de donnée
 ### Création d'un Magazine
 ```php
         // Arrange
-        $requete = new CreerMagazineRequete("Weebdo","05/11/2023 15:16:13",
-        "169","18/11/2023 16:15:15");
+        $requete = new CreerMagazineRequete("Weebdo","169","18/11/2023 16:15:15");
         $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
         // Act
         $resultat = $creerMagazine->execute($requete);
@@ -63,8 +80,7 @@ Si les données sont valides, alors elles sont ajoutées dans la base de donnée
 ### Test si le titre n'est pas renseigné
 ```php
         // Arrange
-        $requete = new CreerMagazineRequete("","05/11/2023 15:16:13",
-        "169","18/11/2023 16:15:15");
+        $requete = new CreerMagazineRequete("","169","18/11/2023 16:15:15");
         $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
         $this->expectExceptionMessage("Le titre doit être renseigné !");
         // Act
