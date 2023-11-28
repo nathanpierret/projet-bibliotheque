@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Magazine extends Media
 {
     #[ORM\Column(type: "string")]
-    private int $numero;
+    private string $numero;
     #[ORM\Column(type: "string")]
     private string $datePublication;
 
@@ -17,7 +17,7 @@ class Magazine extends Media
     {
     }
 
-    public function setNumero(int $numero): void
+    public function setNumero(string $numero): void
     {
         $this->numero = $numero;
     }
