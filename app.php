@@ -5,6 +5,7 @@ require "./vendor/autoload.php";
 require_once "./bootstrap.php";
 
 // Définir les commandes
+use App\UserStories\ListerMedias\ListerMedias;
 use Silly\Application;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -41,6 +42,18 @@ $app->command('biblio:add:Magazine', function (SymfonyStyle $io) use ($entityMan
     } catch (Exception $e) {
         $io->error($e->getMessage());
     }
+});
+
+$app->command('biblio:list:Media:new', function (SymfonyStyle $io) use ($entityManager) {
+    $listerMedias = new ListerMedias($entityManager);
+    $listeNouvMedias = $listerMedias->execute();
+    $tableMedias = $io->createTable();
+    $tableMedias->setHeaderTitle("Liste des nouveaux médias");
+    $tableMedias->setHeaders(['id','titre','statut','dateCreation','typeMedia']);
+    foreach ($listeNouvMedias as $media) {
+        $tableMedias->addRow([$media['id'],$media['titre'],$media['statut'],$media['dateCreation'],$media['Type']]);
+    }
+    $tableMedias->render();
 });
 
 $app->run();

@@ -2,7 +2,9 @@
 
 namespace App\Tests\Integration\UserStories;
 
+use App\Entites\DureeEmprunt;
 use App\Entites\Livre;
+use App\Entites\StatutEmprunt;
 use App\UserStories\CreerLivre\CreerLivre;
 use App\UserStories\CreerLivre\CreerLivreRequete;
 use Doctrine\DBAL\DriverManager;
@@ -61,8 +63,8 @@ class CreerLivreTest extends TestCase
         $this->assertEquals("978-2-1234-5680-3",$livre->getIsbn());
         $this->assertEquals("Le petit GREGORY",$livre->getAuteur());
         $this->assertEquals(164,$livre->getNbPages());
-        $this->assertEquals(21,$livre->getDureeEmprunt());
-        $this->assertEquals("Nouveau",$livre->getStatut());
+        $this->assertEquals(DureeEmprunt::DUREE_EMPRUNT_LIVRE,$livre->getDureeEmprunt());
+        $this->assertEquals(StatutEmprunt::STATUT_NOUVEAU,$livre->getStatut());
     }
 
     #[test]

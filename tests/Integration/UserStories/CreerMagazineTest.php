@@ -2,7 +2,9 @@
 
 namespace App\Tests\Integration\UserStories;
 
+use App\Entites\DureeEmprunt;
 use App\Entites\Magazine;
+use App\Entites\StatutEmprunt;
 use App\UserStories\CreerMagazine\CreerMagazine;
 use App\UserStories\CreerMagazine\CreerMagazineRequete;
 use Doctrine\DBAL\DriverManager;
@@ -60,8 +62,8 @@ class CreerMagazineTest extends TestCase
         $this->assertEquals("Weebdo",$magazine->getTitre());
         $this->assertEquals("169",$magazine->getNumero());
         $this->assertEquals("18/11/2023 16:15:15",$magazine->getDatePublication());
-        $this->assertEquals(10,$magazine->getDureeEmprunt());
-        $this->assertEquals("Nouveau",$magazine->getStatut());
+        $this->assertEquals(DureeEmprunt::DUREE_EMPRUNT_MAGAZINE,$magazine->getDureeEmprunt());
+        $this->assertEquals(StatutEmprunt::STATUT_NOUVEAU,$magazine->getStatut());
     }
 
     #[test]

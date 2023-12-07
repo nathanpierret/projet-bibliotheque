@@ -19,7 +19,6 @@ class ListerMedias
     }
 
     public function execute(): array {
-        $mediaRepository = $this->entityManager->getRepository(Media::class);
         $connexion = $this->entityManager->getConnection();
         $requete = "SELECT m.id, m.titre, m.statut, m.dateCreation, m.Type
                     FROM media as m
