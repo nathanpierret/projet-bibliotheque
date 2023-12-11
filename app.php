@@ -6,6 +6,7 @@ require_once "./bootstrap.php";
 
 // Définir les commandes
 use App\UserStories\ListerMedias\ListerMedias;
+use App\UserStories\RendreDisponibleMedia\RendreDisponibleMedia;
 use Silly\Application;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -54,6 +55,19 @@ $app->command('biblio:list:Media:new', function (SymfonyStyle $io) use ($entityM
         $tableMedias->addRow([$media['id'],$media['titre'],$media['statut'],$media['dateCreation'],$media['Type']]);
     }
     $tableMedias->render();
+});
+
+$app->command('biblio:disponibility', function (SymfonyStyle $io) use ($entityManager) {
+   $io->title("Formulaire pour rendre disponible un média");
+   $idMedia = $io->ask("Identifiant du média à rendre disponible (obligatoire et valide)");
+   $rendreDisponibleMedia = new RendreDisponibleMedia($entityManager);
+    try {
+        $rendreDisponibleMedia->execute($idMedia);
+        $io->success("Le média choisi a bien été rendu disponible !");
+    } catch (Exception $e) {
+        $io->error($e->getMessage());
+    }
+
 });
 
 $app->run();
