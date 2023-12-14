@@ -33,12 +33,14 @@ class Adherent {
 -nom : string
 -email : string
 -dateAdhesion : DateTime
++checkAdhesionValide()
 }
 
 class Emprunt {
 -id : int
+-numeroEmprunt : string
 -dateEmprunt : DateTime
--dateRetourEstimee : DateTime
+-dateRetourEstimee : ?DateTime
 -dateRetour : ?DateTime
 +checkEmpruntActif()
 +checkEmpruntLate()

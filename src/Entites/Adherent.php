@@ -86,4 +86,12 @@ class Adherent
     {
         return $this->dateAdhesion;
     }
+
+    public function checkAdhesionValide(): bool
+    {
+        if ($this->dateAdhesion > new DateTime()) {
+            return true;
+        }
+        return false;
+    }
 }
