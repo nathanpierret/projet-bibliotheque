@@ -4,3 +4,4 @@ Mettre à jour le SchemaSpy
 Raccourcir les noms des tests d'intégration
 findBy pour $adherent -> findOneBy
 checkAdhesionValide -> changer le modify (il modifie la date d'adhésion et c'est pas bien :( )
+faire une transaction lors de l'ajout d'un emprunt (INSERT emprunt et UPDATE media)
