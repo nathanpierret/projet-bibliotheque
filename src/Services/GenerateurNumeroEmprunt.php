@@ -6,6 +6,7 @@ class GenerateurNumeroEmprunt
 {
     public function generer(int $id): string
     {
-        $numero = sprintf("%'.06d",$id);
+        $numero = sprintf("%'.09d",$id+1);
+        return "EM-".$numero;
     }
 }

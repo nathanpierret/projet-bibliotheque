@@ -1,5 +1,6 @@
-Définition d'une User Story dans le MD - OK
-Redéfinir les critères d'acceptations dans le MD - OK
-CreerLivre : critère ISBN valide - OK
-Front : erreurs en-dessous de chaque zone de texte + remettre la value en cas d'erreur - OK
-Faire une classe StatutEmprunt pour les statuts et DureeEmprunt pour les durées d'emprunt - OK
+Finir les tests d'intégration pour l'User Story EmprunterMedia
+Faire le MarkDown pour l'UserStory EmprunterMedia
+Mettre à jour le SchemaSpy
+Raccourcir les noms des tests d'intégration
+findBy pour $adherent -> findOneBy
+checkAdhesionValide -> changer le modify (il modifie la date d'adhésion et c'est pas bien :( )

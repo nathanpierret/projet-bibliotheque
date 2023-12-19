@@ -23,7 +23,7 @@ class Emprunt
     private DateTime $dateEmprunt;
     #[Column(name: "date_retour_estimee",type: Types::DATETIME_MUTABLE)]
     private ?DateTime $dateRetourEstimee;
-    #[Column(name: "date_retour",type: Types::DATETIME_MUTABLE)]
+    #[Column(name: "date_retour",type: Types::DATETIME_MUTABLE,nullable: true)]
     private ?DateTime $dateRetour;
 
     #[ORM\ManyToOne(targetEntity: Adherent::class)]

@@ -89,9 +89,7 @@ class Adherent
 
     public function checkAdhesionValide(): bool
     {
-        if ($this->dateAdhesion > new DateTime()) {
-            return true;
-        }
-        return false;
+        $date = $this->dateAdhesion;
+        return ($date->modify("+1 year") > new DateTime());
     }
 }

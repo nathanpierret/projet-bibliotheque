@@ -5,6 +5,9 @@ require "./vendor/autoload.php";
 require_once "./bootstrap.php";
 
 // Définir les commandes
+use App\Services\GenerateurNumeroEmprunt;
+use App\UserStories\EmprunterMedia\EmprunterMedia;
+use App\UserStories\EmprunterMedia\EmprunterMediaRequete;
 use App\UserStories\ListerMedias\ListerMedias;
 use App\UserStories\RendreDisponibleMedia\RendreDisponibleMedia;
 use Silly\Application;
@@ -68,6 +71,20 @@ $app->command('biblio:disponibility', function (SymfonyStyle $io) use ($entityMa
         $io->error($e->getMessage());
     }
 
+});
+
+$app->command('biblio:emprunt', function (SymfonyStyle $io) use ($entityManager) {
+    $io->title("Formulaire pour emprunter un média");
+    $idMedia = $io->ask("Identifiant du média à emprunter (obligatoire et valide)");
+    $numAdherent = $io->ask("Numéro de l'adhérent qui emprunte (obligatoire et valide)");
+    $emprunterMediaRequete = new EmprunterMediaRequete($numAdherent,$idMedia);
+    $emprunterMedia = new EmprunterMedia($entityManager, new GenerateurNumeroEmprunt(), (new ValidatorBuilder())->enableAnnotationMapping()->getValidator());
+    try {
+        $emprunterMedia->execute($emprunterMediaRequete);
+        $io->success("L'emprunt du média ".$idMedia." par l'adhérent ".$numAdherent." a bien été effectué !");
+    } catch (Exception $e) {
+        $io->error($e->getMessage());
+    }
 });
 
 $app->run();
