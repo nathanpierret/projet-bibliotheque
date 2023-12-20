@@ -34,6 +34,7 @@ class Emprunt
     public function __construct()
     {
         $this->dateRetourEstimee = null;
+        $this->dateRetour = null;
     }
 
     public function setNumeroEmprunt(string $numeroEmprunt): void

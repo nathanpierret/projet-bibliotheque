@@ -5,11 +5,13 @@ require "./vendor/autoload.php";
 require_once "./bootstrap.php";
 
 // Définir les commandes
+use App\Entites\Emprunt;
 use App\Services\GenerateurNumeroEmprunt;
 use App\UserStories\EmprunterMedia\EmprunterMedia;
 use App\UserStories\EmprunterMedia\EmprunterMediaRequete;
 use App\UserStories\ListerMedias\ListerMedias;
 use App\UserStories\RendreDisponibleMedia\RendreDisponibleMedia;
+use App\UserStories\RetournerEmprunt\RetournerEmprunt;
 use Silly\Application;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -82,6 +84,22 @@ $app->command('biblio:emprunt', function (SymfonyStyle $io) use ($entityManager)
     try {
         $emprunterMedia->execute($emprunterMediaRequete);
         $io->success("L'emprunt du média ".$idMedia." par l'adhérent ".$numAdherent." a bien été effectué !");
+    } catch (Exception $e) {
+        $io->error($e->getMessage());
+    }
+});
+
+$app->command('biblio:return:emprunt', function (SymfonyStyle $io) use ($entityManager) {
+    $io->title("Formulaire pour retourner un emprunt");
+    $numeroEmprunt = $io->ask("Numéro de l'emprunt à retourner (obligatoire et valide)");
+    $retournerEmprunt = new RetournerEmprunt($entityManager);
+    try {
+        $emprunt = $entityManager->getRepository(Emprunt::class)->findOneBy(["numeroEmprunt" => $numeroEmprunt]);
+        if ($emprunt->checkEmpruntLate()) {
+            $io->warning("L'emprunt a été retourné en retard !");
+        }
+        $retournerEmprunt->execute($numeroEmprunt);
+        $io->success("L'emprunt ".$numeroEmprunt." a bien été retourné !");
     } catch (Exception $e) {
         $io->error($e->getMessage());
     }

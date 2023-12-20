@@ -76,10 +76,10 @@ class EmprunterMedia
             }
             $this->entityManager->flush();
             $this->entityManager->getConnection()->commit();
+            return true;
         } catch (\Exception $e) {
             $this->entityManager->getConnection()->rollBack();
             throw $e;
         }
-        return true;
     }
 }

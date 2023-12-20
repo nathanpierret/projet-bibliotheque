@@ -8,4 +8,4 @@ Faire une transaction lors de l'ajout d'un emprunt (INSERT emprunt et UPDATE med
 Ajouter les commandes Silly et celles des tests d'intégration dans la doc des UserStories et enlever les exemples de code - OK
 
 Sprint 4 Uniquement :
-Tests d'intégration ne doivent pas utiliser d'autres UserStories
+Tests d'intégration ne doivent pas utiliser d'autres UserStories - OK
