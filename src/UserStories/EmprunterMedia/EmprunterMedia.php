@@ -43,36 +43,43 @@ class EmprunterMedia
             throw new \Exception("Le numéro d'adhérent n'est pas valide !");
         }
         $adherentRepo = $this->entityManager->getRepository(Adherent::class);
-        $adherent = $adherentRepo->findBy(["numeroAdherent" => $requete->adherent]);
+        $adherent = $adherentRepo->findOneBy(["numeroAdherent" => $requete->adherent]);
         $media = $this->entityManager->find(Media::class,$requete->media);
         if (!isset($media)) {
-            throw new \Exception("Le média à emprunter n'existe pas dans la base de données !");
+            throw new \Exception("Le média à emprunter est inexistant !");
         }
         if (!isset($adherent)) {
-            throw new \Exception("L'adhérent n'existe pas dans la base de données !");
+            throw new \Exception("Cet adhérent est inexistant !");
         }
         if ($media->getStatut() != StatutEmprunt::STATUT_DISPONIBLE) {
             throw new \Exception("Le média choisi n'est pas disponible !");
         }
-        if (!$adherent[0]->checkAdhesionValide()) {
+        if (!$adherent->checkAdhesionValide()) {
             throw new \Exception("L'adhérent choisi ne possède pas d'adhésion valide !");
         }
         $lastId = $this->entityManager->getConnection()->executeQuery("SELECT MAX(id) FROM emprunt")->fetchOne();
-        $emprunt = new Emprunt();
         if (is_null($lastId)) {
             $lastId = 0;
         }
-        $emprunt->setNumeroEmprunt($this->generateur->generer($lastId));
-        $emprunt->setDateEmprunt(new \DateTime());
-        $emprunt->setDateRetourEstimee((clone $emprunt->getDateEmprunt())->add(\DateInterval::createFromDateString("+".$media->getDureeEmprunt()."days")));
-        $emprunt->setAdherent($adherent[0]);
-        $emprunt->setMedia($media);
-        $media->setStatut(StatutEmprunt::STATUT_EMPRUNTE);
-        $this->entityManager->persist($emprunt);
-        if (!$this->entityManager->contains($emprunt)) {
-            throw new \Exception("Un problème est survenu lors de l'enregistrement dans la base de données !");
+        $this->entityManager->getConnection()->beginTransaction();
+        try {
+            $emprunt = new Emprunt();
+            $emprunt->setNumeroEmprunt($this->generateur->generer($lastId));
+            $emprunt->setDateEmprunt(new \DateTime());
+            $emprunt->setDateRetourEstimee((clone $emprunt->getDateEmprunt())->add(\DateInterval::createFromDateString("+" . $media->getDureeEmprunt() . "days")));
+            $emprunt->setAdherent($adherent);
+            $emprunt->setMedia($media);
+            $media->setStatut(StatutEmprunt::STATUT_EMPRUNTE);
+            $this->entityManager->persist($emprunt);
+            if (!$this->entityManager->contains($emprunt)) {
+                throw new \Exception("Un problème est survenu lors de l'enregistrement dans la base de données !");
+            }
+            $this->entityManager->flush();
+            $this->entityManager->getConnection()->commit();
+        } catch (\Exception $e) {
+            $this->entityManager->getConnection()->rollBack();
+            throw $e;
         }
-        $this->entityManager->flush();
         return true;
     }
 }

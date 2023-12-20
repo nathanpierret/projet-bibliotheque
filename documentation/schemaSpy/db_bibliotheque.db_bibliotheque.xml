@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><database name="db_bibliotheque" schema="db_bibliotheque" type="MySQL - 5.5.5-10.4.28-MariaDB">
+<?xml version="1.0" encoding="UTF-8"?><database name="db_bibliotheque" schema="db_bibliotheque" type="MySQL - 5.5.5-10.4.32-MariaDB">
    <tables>
-      <table catalog="db_bibliotheque" name="adherent" numRows="2" remarks="" type="TABLE">
-         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+      <table catalog="db_bibliotheque" name="adherent" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_bibliotheque" column="adherent_id" foreignKey="FK_F9FD484B25F06C53" implied="false" onDeleteCascade="false" table="emprunt"/>
+         </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="numero_adherent" nullable="false" remarks="" size="9" type="VARCHAR" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="prenom" nullable="false" remarks="" size="80" type="VARCHAR" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="nom" nullable="false" remarks="" size="80" type="VARCHAR" typeCode="12"/>
@@ -12,7 +14,42 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table catalog="db_bibliotheque" name="livre" numRows="0" remarks="" type="TABLE">
+      <table catalog="db_bibliotheque" name="bluray" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_bibliotheque" column="id" foreignKey="FK_C976A986BF396750" implied="false" onDeleteCascade="true" table="media"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="realisateur" nullable="false" remarks="" size="70" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="duree" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="anneeSortie" nullable="false" remarks="" size="4" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="db_bibliotheque" name="emprunt" numRows="5" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="adherent_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_bibliotheque" column="id" foreignKey="FK_F9FD484B25F06C53" implied="false" onDeleteCascade="false" table="adherent"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="media_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_bibliotheque" column="id" foreignKey="FK_F9FD484BEA9FDD75" implied="false" onDeleteCascade="false" table="media"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="numero_emprunt" nullable="false" remarks="" size="12" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="date_emprunt" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="date_retour_estimee" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="date_retour" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="IDX_F9FD484B25F06C53" unique="false">
+            <column ascending="true" name="adherent_id"/>
+         </index>
+         <index name="IDX_F9FD484BEA9FDD75" unique="false">
+            <column ascending="true" name="media_id"/>
+         </index>
+      </table>
+      <table catalog="db_bibliotheque" name="livre" numRows="2" remarks="" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
             <parent catalog="db_bibliotheque" column="id" foreignKey="FK_6DA2609DBF396750" implied="false" onDeleteCascade="true" table="media"/>
          </column>
@@ -24,7 +61,7 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table catalog="db_bibliotheque" name="magazine" numRows="0" remarks="" type="TABLE">
+      <table catalog="db_bibliotheque" name="magazine" numRows="3" remarks="" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
             <parent catalog="db_bibliotheque" column="id" foreignKey="FK_CEFA4DB2BF396750" implied="false" onDeleteCascade="true" table="media"/>
          </column>
@@ -35,8 +72,10 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table catalog="db_bibliotheque" name="media" numRows="0" remarks="" type="TABLE">
+      <table catalog="db_bibliotheque" name="media" numRows="4" remarks="" type="TABLE">
          <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_bibliotheque" column="id" foreignKey="FK_C976A986BF396750" implied="false" onDeleteCascade="true" table="bluray"/>
+            <child catalog="db_bibliotheque" column="media_id" foreignKey="FK_F9FD484BEA9FDD75" implied="false" onDeleteCascade="false" table="emprunt"/>
             <child catalog="db_bibliotheque" column="id" foreignKey="FK_6DA2609DBF396750" implied="false" onDeleteCascade="true" table="livre"/>
             <child catalog="db_bibliotheque" column="id" foreignKey="FK_CEFA4DB2BF396750" implied="false" onDeleteCascade="true" table="magazine"/>
          </column>

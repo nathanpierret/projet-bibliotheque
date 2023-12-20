@@ -1,4 +1,6 @@
-adherent
+emprunt
 magazine
 livre
+bluray
+adherent
 media

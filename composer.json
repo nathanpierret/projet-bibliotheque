@@ -36,6 +36,12 @@
     "scripts": {
         "unit-test": "./vendor/bin/phpunit --testsuite Unit --testdox --colors=always",
         "it-test": "./vendor/bin/phpunit --testsuite Integration --testdox --colors=always",
+        "test-new-adherent": "./vendor/bin/phpunit tests/Integration/UserStories/CreerAdherentTest.php --testdox --colors=always",
+        "test-new-livre": "./vendor/bin/phpunit tests/Integration/UserStories/CreerLivreTest.php --testdox --colors=always",
+        "test-new-magazine": "./vendor/bin/phpunit tests/Integration/UserStories/CreerMagazineTest.php --testdox --colors=always",
+        "test-list-new": "./vendor/bin/phpunit tests/Integration/UserStories/ListerMediasTest.php --testdox --colors=always",
+        "test-disponibility": "./vendor/bin/phpunit tests/Integration/UserStories/RendreDisponibleMediaTest.php --testdox --colors=always",
+        "test-emprunt": "./vendor/bin/phpunit tests/Integration/UserStories/EmprunterMediaTest.php --testdox --colors=always",
         "all-tests": "./vendor/bin/phpunit --testdox --colors=always",
         "delDB": "./vendor/bin/doctrine orm:schema-tool:drop --force",
         "updateDB": "./vendor/bin/doctrine orm:schema-tool:update --force",

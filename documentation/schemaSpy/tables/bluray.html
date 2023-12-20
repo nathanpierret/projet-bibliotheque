@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>media - db_bibliotheque.db_bibliotheque</title>
+        <title>bluray - db_bibliotheque.db_bibliotheque</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>media</h1><p><span id="recordNumber">4</span> rows</p><br />
+                    <h1>bluray</h1><p><span id="recordNumber">0</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -113,40 +113,25 @@
                                     <td>INT</td>
                                     <td>10</td>
                                     <td title=''></td>
-                                    <td title='Automatically updated by the database'>√</td>
+                                    <td title=''></td>
                                     <td>null</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="bluray.id references media.id via FK_C976A986BF396750"><a href='bluray.html'>bluray</a><span class='relatedKey'>.id</span></td>
-                                                <td class="constraint detail">FK_C976A986BF396750</td>
-                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="emprunt.media_id references media.id via FK_F9FD484BEA9FDD75"><a href='emprunt.html'>emprunt</a><span class='relatedKey'>.media_id</span></td>
-                                                <td class="constraint detail">FK_F9FD484BEA9FDD75</td>
-                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="livre.id references media.id via FK_6DA2609DBF396750"><a href='livre.html'>livre</a><span class='relatedKey'>.id</span></td>
-                                                <td class="constraint detail">FK_6DA2609DBF396750</td>
-                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td title="magazine.id references media.id via FK_CEFA4DB2BF396750"><a href='magazine.html'>magazine</a><span class='relatedKey'>.id</span></td>
-                                                <td class="constraint detail">FK_CEFA4DB2BF396750</td>
-                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="bluray.id references media.id via FK_C976A986BF396750"><a href='media.html'>media</a><span class='relatedKey'>.id</span></td>
+                                                <td class="constraint detail">FK_C976A986BF396750</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="titre">titre</span></td>
+                                    <td><span id="realisateur">realisateur</span></td>
                                     <td>VARCHAR</td>
                                     <td>70</td>
                                     <td title=''></td>
@@ -163,7 +148,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="dureeEmprunt">dureeEmprunt</span></td>
+                                    <td><span id="duree">duree</span></td>
                                     <td>INT</td>
                                     <td>10</td>
                                     <td title=''></td>
@@ -180,43 +165,9 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="statut">statut</span></td>
+                                    <td><span id="anneeSortie">anneeSortie</span></td>
                                     <td>VARCHAR</td>
-                                    <td>255</td>
-                                    <td title=''></td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="dateCreation">dateCreation</span></td>
-                                    <td>VARCHAR</td>
-                                    <td>255</td>
-                                    <td title=''></td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="Type">Type</span></td>
-                                    <td>VARCHAR</td>
-                                    <td>255</td>
+                                    <td>4</td>
                                     <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -289,24 +240,20 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="bluray.html" target="_top" title="bluray" alt="" coords="334,5,474,123">
-<area shape="rect" id="node2" href="media.html" target="_top" title="media" alt="" coords="5,264,257,509">
-<area shape="rect" id="node3" href="emprunt.html" target="_top" title="emprunt" alt="" coords="301,140,507,316">
-<area shape="rect" id="node4" href="livre.html" target="_top" title="livre" alt="" coords="345,333,463,451">
-<area shape="rect" id="node5" href="magazine.html" target="_top" title="magazine" alt="" coords="320,468,488,585">
+<area shape="rect" id="node1" href="bluray.html" target="_top" title="bluray" alt="" coords="208,5,433,192">
+<area shape="rect" id="node2" href="media.html" target="_top" title="media" alt="" coords="5,8,164,125">
 </map>
-                                        <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/media.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                        <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/bluray.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="bluray.html" target="_top" title="bluray" alt="" coords="334,5,474,123">
-<area shape="rect" id="node2" href="media.html" target="_top" title="media" alt="" coords="5,159,257,404">
-<area shape="rect" id="node3" href="emprunt.html" target="_top" title="emprunt" alt="" coords="301,409,507,585">
-<area shape="rect" id="node4" href="adherent.html" target="_top" title="adherent" alt="" coords="61,441,201,529">
-<area shape="rect" id="node5" href="livre.html" target="_top" title="livre" alt="" coords="345,140,463,257">
-<area shape="rect" id="node6" href="magazine.html" target="_top" title="magazine" alt="" coords="320,275,488,392">
+<area shape="rect" id="node1" href="bluray.html" target="_top" title="bluray" alt="" coords="208,5,433,192">
+<area shape="rect" id="node2" href="media.html" target="_top" title="media" alt="" coords="5,260,164,377">
+<area shape="rect" id="node3" href="emprunt.html" target="_top" title="emprunt" alt="" coords="252,209,389,297">
+<area shape="rect" id="node4" href="livre.html" target="_top" title="livre" alt="" coords="262,315,379,403">
+<area shape="rect" id="node5" href="magazine.html" target="_top" title="magazine" alt="" coords="248,420,393,508">
 </map>
-                                        <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/media.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                        <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/bluray.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>
                                 </div>
                             </div>

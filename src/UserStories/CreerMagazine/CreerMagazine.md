@@ -66,23 +66,16 @@ Si les données sont valides, alors elles sont ajoutées dans la base de donnée
 - Renvoie **True** si les données ont été synchronisées dans la base de données,  
   sinon renvoie une **Exception**.
 
-## Exemple de code
+## Commandes
 
-### Création d'un Magazine
-```php
-        // Arrange
-        $requete = new CreerMagazineRequete("Weebdo","169","18/11/2023 16:15:15");
-        $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
-        // Act
-        $resultat = $creerMagazine->execute($requete);
+### Tests d'intégration
+Voici la commande à utiliser pour visualiser les tests d'intégration de l'User Story :
+```batch
+  composer test-new-magazine
 ```
 
-### Test si le titre n'est pas renseigné
-```php
-        // Arrange
-        $requete = new CreerMagazineRequete("","169","18/11/2023 16:15:15");
-        $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
-        $this->expectExceptionMessage("Le titre doit être renseigné !");
-        // Act
-        $resultat = $creerMagazine->execute($requete);
+### Silly
+Voici la commande Silly qui utilise l'User Story :
+```batch
+  php app.php biblio:add:Magazine
 ```

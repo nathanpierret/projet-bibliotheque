@@ -1,7 +1,11 @@
-Finir les tests d'intégration pour l'User Story EmprunterMedia
-Faire le MarkDown pour l'UserStory EmprunterMedia
-Mettre à jour le SchemaSpy
-Raccourcir les noms des tests d'intégration
-findBy pour $adherent -> findOneBy
-checkAdhesionValide -> changer le modify (il modifie la date d'adhésion et c'est pas bien :( )
-faire une transaction lors de l'ajout d'un emprunt (INSERT emprunt et UPDATE media)
+Finir les tests d'intégration pour l'User Story EmprunterMedia - OK
+Faire le MarkDown pour l'UserStory EmprunterMedia - OK
+Mettre à jour le SchemaSpy - OK
+Raccourcir les noms des tests d'intégration - OK
+FindBy pour $adherent -> findOneBy - OK
+CheckAdhesionValide -> changer le modify (il modifie la date d'adhésion et c'est pas bien :( ) - OK
+Faire une transaction lors de l'ajout d'un emprunt (INSERT emprunt et UPDATE media) - OK
+Ajouter les commandes Silly et celles des tests d'intégration dans la doc des UserStories et enlever les exemples de code - OK
+
+Sprint 4 Uniquement :
+Tests d'intégration ne doivent pas utiliser d'autres UserStories

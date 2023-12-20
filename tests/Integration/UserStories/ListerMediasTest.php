@@ -52,7 +52,7 @@ class ListerMediasTest extends TestCase
     }
 
     #[test]
-    public function ListerMedias_OrdreDecroissantDesDateCreation_TableauContenantObjetsMedia () {
+    public function ListerMedias_TriOrdreDecroissant_Array () {
         // Arrange
         $requeteLivre = new CreerLivreRequete("Mon livre 4","2-1234-5680-2","Quelqun",168);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
@@ -78,7 +78,7 @@ class ListerMediasTest extends TestCase
     }
 
     #[test]
-    public function ListerMedias_MediasAvecStatutNouveauUniquement_TableauContenantObjetsMedia () {
+    public function ListerMedias_MediasNouveaux_Array () {
         // Arrange
         $requeteLivre = new CreerLivreRequete("Mon livre 4","2-1234-5680-2","Quelqun",168);
         $creerLivre = new CreerLivre($this->entityManager,$this->validateur);

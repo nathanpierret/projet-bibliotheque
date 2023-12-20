@@ -50,32 +50,16 @@ Cette classe récupère un objet **Média** dans la base de données à partir d
 - Paramètre : **$idMedia** (integer)
 - Renvoie **True** si le **statut** de l'objet **Média** choisi est passé à **Disponible** au lieu de **Nouveau** dans la base de données, sinon renvoie une **Exception**
 
-## Exemple de code
+## Commandes
 
-### Rendre un média disponible
-
-```php
-        // Arrange
-        $requeteLivre = new CreerLivreRequete("Mon livre 4","2-1234-5680-2","Quelqun",168);
-        $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
-        $creerLivre->execute($requeteLivre);
-        $rendreDisponibleMedia = new RendreDisponibleMedia($this->entityManager);
-        $repo = $this->entityManager->getRepository(Media::class);
-        $livre = $repo->find(1);
-        // Act
-        $resultat = $rendreDisponibleMedia->execute(1);
-        // Assert
-        $this->assertTrue($resultat);
-        $this->assertEquals(StatutEmprunt::STATUT_DISPONIBLE,$livre->getStatut());
+### Tests d'intégration
+Voici la commande à utiliser pour visualiser les tests d'intégration de l'User Story :
+```batch
+  composer test-disponibility
 ```
 
-### Test si le média choisi n'existe pas dans la base de données
-```php
-        // Arrange
-        $rendreDisponibleMedia = new RendreDisponibleMedia($this->entityManager);
-        $repo = $this->entityManager->getRepository(Media::class);
-        $media = $repo->find(1);
-        $this->expectExceptionMessage("Le média avec cet identifiant n'existe pas dans la Base de Données !");
-        // Act
-        $resultat = $rendreDisponibleMedia->execute(1);
+### Silly
+Voici la commande Silly qui utilise l'User Story :
+```batch
+  php app.php biblio:disponibility
 ```

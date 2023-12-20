@@ -123,5 +123,96 @@ class EmprunterMediaTest extends TestCase
         $resultat = $emprunterMedia->execute($requete3);
     }
 
-    // Tests manquants
+    #[test]
+    public function emprunterMedia_AdherentInexistant_Exception() {
+        // Arrange
+        $requete = new CreerMagazineRequete("Weebdo","169","18/11/2023 16:15:15");
+        $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
+        $creerMagazine->execute($requete);
+        $media = $this->entityManager->find(Media::class,1);
+        $rendreDisponibleMedia = new RendreDisponibleMedia($this->entityManager);
+        $rendreDisponibleMedia->execute($media->getId());
+        $requete3 = new EmprunterMediaRequete("AD-999999",$media->getId());
+        $emprunterMedia = new EmprunterMedia($this->entityManager,$this->generateurNumeroEmprunt,$this->validateur);
+        $this->expectExceptionMessage("Cet adhérent est inexistant !");
+        // Act
+        $resultat = $emprunterMedia->execute($requete3);
+    }
+
+    #[test]
+    public function emprunterMedia_MediaInexistant_Exception() {
+        // Arrange
+        $requete2 = new CreerAdherentRequete("Lucy","Pretler","lucypretler@test.fr");
+        $creerAdherent = new CreerAdherent($this->entityManager,$this->generateurNumeroAdherent,$this->validateur);
+        $creerAdherent->execute($requete2);
+        $repository = $this->entityManager->getRepository(Adherent::class);
+        $adherent = $repository->findOneBy(['email' => 'lucypretler@test.fr']);
+        $adherent->setDateAdhesion(\DateTime::createFromFormat("d/m/Y H:i:s","11/11/2023 15:14:12"));
+        $this->entityManager->flush();
+        $requete3 = new EmprunterMediaRequete($adherent->getNumeroAdherent(),10);
+        $emprunterMedia = new EmprunterMedia($this->entityManager,$this->generateurNumeroEmprunt,$this->validateur);
+        $this->expectExceptionMessage("Le média à emprunter est inexistant !");
+        // Act
+        $resultat = $emprunterMedia->execute($requete3);
+    }
+
+    #[test]
+    public function emprunterMedia_NumeroAdherentNonValide_Exception() {
+        // Arrange
+        $requete = new CreerMagazineRequete("Weebdo","169","18/11/2023 16:15:15");
+        $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
+        $creerMagazine->execute($requete);
+        $media = $this->entityManager->find(Media::class,1);
+        $rendreDisponibleMedia = new RendreDisponibleMedia($this->entityManager);
+        $rendreDisponibleMedia->execute($media->getId());
+        $requete3 = new EmprunterMediaRequete("toto",$media->getId());
+        $emprunterMedia = new EmprunterMedia($this->entityManager,$this->generateurNumeroEmprunt,$this->validateur);
+        $this->expectExceptionMessage("Le numéro d'adhérent n'est pas valide !");
+        // Act
+        $resultat = $emprunterMedia->execute($requete3);
+    }
+
+    #[test]
+    public function emprunterMedia_MediaNonDisponible_Exception() {
+        // Arrange
+        $requete = new CreerMagazineRequete("Weebdo","169","18/11/2023 16:15:15");
+        $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
+        $creerMagazine->execute($requete);
+        $requete2 = new CreerAdherentRequete("Lucy","Pretler","lucypretler@test.fr");
+        $creerAdherent = new CreerAdherent($this->entityManager,$this->generateurNumeroAdherent,$this->validateur);
+        $creerAdherent->execute($requete2);
+        $repository = $this->entityManager->getRepository(Adherent::class);
+        $adherent = $repository->findOneBy(['email' => 'lucypretler@test.fr']);
+        $adherent->setDateAdhesion(\DateTime::createFromFormat("d/m/Y H:i:s","11/11/2023 15:14:12"));
+        $this->entityManager->flush();
+        $media = $this->entityManager->find(Media::class,1);
+        $requete3 = new EmprunterMediaRequete($adherent->getNumeroAdherent(),$media->getId());
+        $emprunterMedia = new EmprunterMedia($this->entityManager,$this->generateurNumeroEmprunt,$this->validateur);
+        $this->expectExceptionMessage("Le média choisi n'est pas disponible !");
+        // Act
+        $resultat = $emprunterMedia->execute($requete3);
+    }
+
+    #[test]
+    public function emprunterMedia_AdhesionNonValide_Exception() {
+        // Arrange
+        $requete = new CreerMagazineRequete("Weebdo","169","18/11/2023 16:15:15");
+        $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
+        $creerMagazine->execute($requete);
+        $requete2 = new CreerAdherentRequete("Lucy","Pretler","lucypretler@test.fr");
+        $creerAdherent = new CreerAdherent($this->entityManager,$this->generateurNumeroAdherent,$this->validateur);
+        $creerAdherent->execute($requete2);
+        $repository = $this->entityManager->getRepository(Adherent::class);
+        $adherent = $repository->findOneBy(['email' => 'lucypretler@test.fr']);
+        $adherent->setDateAdhesion(\DateTime::createFromFormat("d/m/Y H:i:s","11/11/2021 15:14:12"));
+        $this->entityManager->flush();
+        $media = $this->entityManager->find(Media::class,1);
+        $rendreDisponibleMedia = new RendreDisponibleMedia($this->entityManager);
+        $rendreDisponibleMedia->execute($media->getId());
+        $requete3 = new EmprunterMediaRequete($adherent->getNumeroAdherent(),$media->getId());
+        $emprunterMedia = new EmprunterMedia($this->entityManager,$this->generateurNumeroEmprunt,$this->validateur);
+        $this->expectExceptionMessage("L'adhérent choisi ne possède pas d'adhésion valide !");
+        // Act
+        $resultat = $emprunterMedia->execute($requete3);
+    }
 }

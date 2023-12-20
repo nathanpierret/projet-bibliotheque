@@ -44,30 +44,16 @@ Cette classe recherche dans la base de données tous les enregistrements de la t
 - Aucun paramètre
 - Renvoie un tableau associatif d'objets **Média** ayant le statut **Nouveau** ordonnés par **dateCreation** décroissantes.  
 
-## Exemple de code
+## Commandes
 
-### Lister les médias par dateCreation décroissantes
-```php
-       // Arrange
-        $requeteLivre = new CreerLivreRequete("Mon livre 4","2-1234-5680-2","Quelqun",168);
-        $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
-        $requeteMagazine = new CreerMagazineRequete("Mon magazine 3","184","11/11/2023");
-        $creerMagazine = new CreerMagazine($this->entityManager,$this->validateur);
-        $listerMedias = new ListerMedias($this->entityManager);
-        $mediaPrecedent = null;
-        // Act
-        $creerLivre->execute($requeteLivre);
-        /*$livre = $this->entityManager->getRepository(Media::class)->findOneBy(["id" => 1]);
-        $livre->setDateCreation("21/11/2023");
-        $this->entityManager->flush();*/
-        $creerMagazine->execute($requeteMagazine);
-        $resultat = $listerMedias->execute();
-        // Assert
-        foreach ($resultat as $media) {
-            if ($media == $resultat[0]) {
-                $mediaPrecedent = $media;
-            } else {
-                $this->assertLessThanOrEqual((\DateTime::createFromFormat("d/m/Y",$media["dateCreation"])),(\DateTime::createFromFormat("d/m/Y",$mediaPrecedent["dateCreation"])));
-            }
-        }
+### Tests d'intégration
+Voici la commande à utiliser pour visualiser les tests d'intégration de l'User Story :
+```batch
+  composer test-list-new
+```
+
+### Silly
+Voici la commande Silly qui utilise l'User Story :
+```batch
+  php app.php biblio:list:Media:new
 ```

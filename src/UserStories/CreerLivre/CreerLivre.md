@@ -70,25 +70,16 @@ Si les données sont valides, alors elles sont ajoutées dans la base de donnée
 - Renvoie **True** si les données ont été synchronisées dans la base de données,  
 sinon renvoie une **Exception**.
 
-## Exemple de code
+## Commandes
 
-### Création d'un Livre
-```php
-        // Arrange
-        $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3",
-        "Le petit GREGORY",164);
-        $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
-        // Act
-        $resultat = $creerLivre->execute($requete);
+### Tests d'intégration
+Voici la commande à utiliser pour visualiser les tests d'intégration de l'User Story :
+```batch
+  composer test-new-livre
 ```
 
-### Test si le nom de l'auteur n'est pas renseigné
-```php
-        // Arrange
-        $requete = new CreerLivreRequete("La noyade","978-3-1249-3451-3",
-        "",164);
-        $creerLivre = new CreerLivre($this->entityManager,$this->validateur);
-        $this->expectExceptionMessage("Le nom de l'auteur doit être renseigné !");
-        // Act
-        $resultat = $creerLivre->execute($requete);
+### Silly
+Voici la commande Silly qui utilise l'User Story :
+```batch
+  php app.php biblio:add:Livre
 ```
