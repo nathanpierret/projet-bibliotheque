@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+!theme carbon-gray
+skinparam ClassBorderColor black
+skinparam ClassBackgroundColor white
+skinparam BackgroundColor Linen
+skinparam ArrowHeadColor black
+skinparam Color black
+skinparam actorStyle awesome
+skinparam actor {
+BackgroundColor gray
+}
+
+
+Bibliothécaire as Biblio
+
+Biblio --> (Créer un adhérent)
+Biblio --> (Créer un livre)
+Biblio --> (Créer un magazine)
+(Lister les nouveaux médias) <-- Biblio
+(Rendre disponible un média) <-- Biblio
+(Emprunter un média) <-- Biblio
+Biblio -> (Retourner un média)
+@enduml
